@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation=" http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.3.xsd
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+	<context:component-scan base-package="com.Shop.controller"/>
+	<mvc:default-servlet-handler/>
+	<mvc:annotation-driven />
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*.do"/>
+			<mvc:exclude-mapping path="/login.do"/>
+			<mvc:exclude-mapping path="/loginoff.do"/>
+			<mvc:exclude-mapping path="/getRoleAndPermission.do"/>
+			<bean class="com.Shop.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/*/*.do"/>
+			<mvc:exclude-mapping path="/permissiondenied.do"/>
+			<bean class="com.Shop.interceptor.PerInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<!--文件上传 -->	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置所有上传文件的大小的和 -->
+		<property name="maxUploadSize" value="102400000" />
+		<!-- 设置单个上传文件的大小，就是每一个单独的文件不能超过100M  -->
+		<property name="maxUploadSizePerFile" value="1024000"/>
+		<!-- 内存缓存的文件最大为20M  -->
+		<property name="maxInMemorySize" value="20480"/>
+	</bean>
+</beans>

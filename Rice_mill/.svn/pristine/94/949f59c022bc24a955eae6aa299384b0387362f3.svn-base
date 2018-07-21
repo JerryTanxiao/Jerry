@@ -1,0 +1,20 @@
+package com.Rice.service.impl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.Rice.entity.User;
+import com.Rice.mapper.UserMapper;
+import com.Rice.service.IUserService;
+@Service
+public class UserServiceImpl implements IUserService {
+	@Autowired
+	UserMapper userMapper;
+	@Override
+	public User getLoginByUser(User user) {
+		return userMapper.selectLoginByUser(user);
+	}
+	
+	@Override
+	public Integer insterUserReturnUserId(User user) {
+		return userMapper.insertUsers(user);
+	}
+}

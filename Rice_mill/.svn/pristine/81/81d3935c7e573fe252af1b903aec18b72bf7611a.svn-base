@@ -1,0 +1,60 @@
+package com.Rice.dao;
+import java.util.List;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.Rice.entity.Goods;
+import com.Rice.mapper.GoodsMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+public class GoodsDaoImpl implements GoodsMapper {
+	@Autowired
+	SqlSessionTemplate sqlSessionTemplate;
+	@Autowired
+	GoodsMapper goodMapper;
+	@Override
+	public List<Goods> selectGoodsByGoodsname() {
+		List<Goods> goods = null;
+		try {
+			goods=sqlSessionTemplate.getMapper(GoodsMapper.class).selectGoods();
+			return goods;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	@Override
+	public List<Goods> selectdiscountsGoodsBydiscountsname() {
+		List<Goods> goods = null;
+		try {
+			PageHelper.startPage(1,6);
+//			goods= sqlSessionTemplate.getMapper(GoodsMapper.class).selectdiscountsGoodsBydiscountsname();
+			goods = goodMapper.selectdiscountsGoodsBydiscountsname();
+			System.out.println(goods);
+			for(Goods goods2: goods){
+				System.out.println(goods2);
+			}
+			PageInfo<Goods> goods2=new PageInfo<Goods>(goods.subList(0, 5));
+			System.out.println(goods2);
+			return goods;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	@Override
+	public List<Goods> getGoodsByType(String goodstype) {
+		List<Goods> goods= sqlSessionTemplate.getMapper(GoodsMapper.class).selectGoods();
+		return goods;
+	}
+	@Override
+	public Integer findNewCont() {
+		return sqlSessionTemplate.getMapper(GoodsMapper.class).findNewCont();
+	}
+	@Override
+	public List<Goods> findNewsPage(Integer start, Integer pagesize) {
+		return sqlSessionTemplate.getMapper(GoodsMapper.class).findNewsPage(start, pagesize);
+	}
+	@Override
+	public List<Goods> selectGoods() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

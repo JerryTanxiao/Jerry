@@ -1,0 +1,26 @@
+package com.Rice.dao;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.Rice.entity.User;
+import com.Rice.mapper.UserMapper;
+public class UserDaoImpl implements UserMapper {
+	@Autowired
+	SqlSessionTemplate sqlSessionTemplate;
+	@Override
+	public User selectLoginByUser(User user) {
+		User login= sqlSessionTemplate.getMapper(UserMapper.class).selectLoginByUser(user);
+		return login;
+	}
+
+	@Override
+	public Integer insertUsers(User user) {
+		Integer i=0;
+		try {
+			i=sqlSessionTemplate.getMapper(UserMapper.class).insertUsers(user);
+		} catch (Exception e) {
+		}
+		System.out.println(i);
+		return i;
+	}
+	
+}

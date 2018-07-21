@@ -1,0 +1,21 @@
+package com.Rice.dao;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.Rice.entity.Diet;
+import com.Rice.mapper.DietMapper;
+public class DietDaoImpl implements DietMapper {
+	@Autowired
+	SqlSessionTemplate sqlSessionTemplate ;
+	@Override
+	public Diet getDietByDiettheme(String diettheme) {
+		Diet diet = null;
+		try {
+			diet=sqlSessionTemplate.getMapper(DietMapper.class).getDietByDiettheme(diettheme);
+			return diet;
+		} catch (Exception e) {
+			return diet;
+		}
+		
+	}
+
+}

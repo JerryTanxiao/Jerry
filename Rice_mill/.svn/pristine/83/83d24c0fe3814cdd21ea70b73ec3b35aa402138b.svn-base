@@ -1,0 +1,34 @@
+package com.Rice.dao;
+import java.util.List;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.Rice.entity.Consumption;
+import com.Rice.entity.Member;
+import com.Rice.entity.Recharge;
+import com.Rice.mapper.VIPMapper;
+public class VIPDaoImpl implements VIPMapper{
+	@Autowired
+	SqlSessionTemplate sqlSessionTemplate;
+	@Override
+	public Integer updateMember(Member member) {
+		Integer i = sqlSessionTemplate.getMapper(VIPMapper.class).updateMember(member);
+		System.out.println(i);
+		return i;
+	}
+	@Override
+	public List<Member> selectPageRecharge() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Recharge> selectAllRechargeByMemberId(String username) {
+		return sqlSessionTemplate.getMapper(VIPMapper.class).selectAllRechargeByMemberId(username);
+	}
+	@Override
+	public List<Consumption> selectAllConsumptionByMemberId(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

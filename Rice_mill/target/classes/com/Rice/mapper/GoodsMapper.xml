@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Rice.mapper.GoodsMapper">
+	<select id="selectGoods" resultType="goods">
+		select * from t_goods 
+	</select>
+	<select id="findNewsPage" resultType="goods">
+		 select * from t_goods limit #{start},#{pagesize}
+	</select>
+	<select id="findNewCont" resultType="Integer">
+		select count(*) from t_goods
+	</select>
+	<select id="selectdiscountsGoodsBydiscountsname" resultType="goods">
+	select g.* from t_goods g,t_discounts d where g.goodsname=d.discountsname
+	</select>
+</mapper>

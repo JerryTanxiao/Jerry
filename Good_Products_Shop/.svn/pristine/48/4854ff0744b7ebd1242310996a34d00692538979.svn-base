@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+<!-- 	<package name="front" extends="json-default"/> -->
+<!-- 	<package name="struts2" extends="struts-default">
+		<action name="Connect">
+			<result>/WEB-INF/views/connect.jsp</result>
+		</action>
+		<action name="About">
+			<result>/WEB-INF/views/about.jsp</result>
+		</action>
+		<action name="Advertise">
+			<result>/WEB-INF/views/advertise.jsp</result>
+		</action>
+		<action name="Brand">
+			<result>/WEB-INF/views/brand.jsp</result>
+		</action>
+		<action name="Index">
+			<result>/WEB-INF/views/index.jsp</result>
+		</action>
+		<action name="Product">
+			<result>/WEB-INF/views/product.jsp</result>
+		</action>
+	</package> -->
+	<include file="mmb.xml"/>
+	<include file="mm.xml"/>
+	<include file="Jerry.xml"/>
+</struts>

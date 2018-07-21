@@ -1,0 +1,7 @@
+package com.Rice.mapper;
+
+import com.Rice.entity.Diet;
+
+public interface DietMapper {
+	Diet getDietByDiettheme(String diettheme);
+}

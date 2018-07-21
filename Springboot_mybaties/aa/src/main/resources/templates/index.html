@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    table tr td {
+        border: pink solid 1px;
+    }
+
+    input {
+        width: 50px;
+    }
+</style>
+<body>
+<table cellpadding="0" cellspacing="0" style="margin: 0 auto; border: 2px solid pink; background: antiquewhite">
+    <tr id="t1">
+        <td>用户名</td>
+        <td>密码</td>
+        <td>操作</td>
+    </tr>
+</table>
+</body>
+<script src="/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var str = "";
+        $.ajax({
+            url: "User.do",
+            type: "post",
+            success: function (data) {
+                for (x in data) {
+                    str += "<tr>";
+                    for (y in data[x]) {
+                        if (y == "username") {
+                            str += "<td><input value='" + data[x][y] + "' disabled='disabled' class='t1'/></td>";
+                        } else
+                            str += "<td><input value='" + data[x][y] + "' disabled='disabled' /></td>";
+
+                    }
+                    str += "<td><input type='button'  value='删除' onclick='tt(this)' disabled='disabled' />|<input type='button' value='修改' onclick='uu(this)' />|<input type='button' value='添加' onclick='add(this)' disabled='disabled'/></td></tr>";
+                }
+                $("#t1").after(str);
+            }
+        });
+        /*  $('body').on('click','tr td',function(){
+              alert("112255")
+          });*/
+    });
+    function tt(t) {
+       // 动态获取当前行的某一个值
+       var username=$(t).parents("tr").find("input:first").val();
+        $.ajax({
+            url: "UserDelete.do",
+            type: "post",
+            data:username,
+          /*  dataType:'json',*/
+            contentType:'application/json',
+            success: function (data) {
+                if(data){
+                    $(t).parents("tr").remove();
+                    alert("删除成功")
+                }else{
+                    alert("删除失败")
+                }
+
+            }
+        });
+    }
+    function add(t) {
+        var str="<tr><td><input/></td><td><input/></td><td><input type='button'  value='删除' onclick='tt(this)' disabled='disabled' />|<input type='button' value='保存' onclick='uu(this)' />|<input type='button' value='添加' onclick='add(this)' disabled='disabled'/></td></tr>"
+        $("table").append(str);
+    }
+
+    function uu(t) {
+       var update= $(t).parents("tr").find("input:eq(3)").val()
+        if(update=='修改'){
+            $(t).parents("tr").find("input:eq(1)").attr("disabled",false);
+            $(t).parents("tr").find("input:eq(3)").val("保存")
+        }else if(update=="保存"){
+            // 动态获取当前行的某一个值
+            var username=$(t).parents("tr").find("input:first").val();
+            var password=$(t).parents("tr").find("input:eq(1)").val();
+            var user={
+                username:username,
+                password:password
+            }
+
+            $.ajax({
+                url: "UpdateUser.do",
+                type: "post",
+                data:JSON.stringify(user),
+                /*   dataType:'json',*/
+                contentType:'application/json',
+                success: function (data) {
+                    $(t).parents("tr").find("input:eq(1)").attr("disabled",true);
+                    $(t).parents("tr").find("input:eq(0)").attr("disabled",true);
+                    $(t).parents("tr").find("input:eq(3)").val("修改");
+                    if(data){
+                        $(t).parents("tr").find("input:eq(3)").attr("disabled",true);
+                        $(t).parents("tr").find("input:eq(4)").attr("disabled",false);
+                        alert("修改成功")
+                    }else{
+                        alert("修改失败")
+                    }
+                }
+            });
+        }
+
+
+    }
+</script>
+</html>

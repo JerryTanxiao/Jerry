@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+<!-- 	<package name="json" extends="json-default">
+		<action name="JoinAction" class="joinAction" method="execute">
+			<result type="json"></result>
+		</action>
+	</package> -->
+	<package name="Jerry" extends="struts-default">
+		<action name="Brand" class="joinAction">
+			<result>/WEB-INF/views/brand.jsp</result>
+		</action>
+	<!-- 	<action name="JoinPage" class="joinPage">
+			<result>/list.jsp</result>
+		</action> -->
+		<action name="Product" class="goodsAction">
+			<result>/WEB-INF/views/product.jsp</result>
+		</action>
+	</package>
+</struts>

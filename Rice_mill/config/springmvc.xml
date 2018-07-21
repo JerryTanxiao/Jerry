@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+	<!-- 自动扫描com.Rice包中的控制器 -->
+	<context:component-scan base-package="com.Rice"/>
+	<!-- 
+		当配置了mvc:annotation-driven/后，Spring就知道了我们启用注解驱动。然后Spring通过context:component-scan/标签的配置，
+		会自动为我们将扫描到的@Component，@Controller，@Service，@Repository等注解标记的组件注册到工厂中，来处理我们的请求。
+		并且提供了数据绑定支持，@NumberFormat支持，@DateTimeFormat支持,@Valid支持，读写XML的支持（JAXB）和读写JSON的支持（默认Jackson）等功能。 
+	-->
+	<mvc:annotation-driven/>
+	<!-- <mvc:default-servlet-handler /> ： 由于DispatcherServlet的url-pattern配置为 / 后，容器提供的DefaultServlet对uri的映射将会失效，
+	而DispatcherServlet没有配置对静态资源的处理，此时又需要服务器对静态资源的处理功能，所以在Spring MVC的xml配置文件中配置<mvc:default-servlet-handler />，
+	做此配置后Spring MVC会在Spring MVC上下文中定义一个org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler，
+	它会像一个检查员，对进入DispatcherServlet的URL进行筛查，如果发现是静态资源的请求，就将该请求转由Web应用服务器默认的Servlet处理，如果不是静态资源的请求，才由DispatcherServlet继续处理。 -->
+	<mvc:default-servlet-handler />
+	<!--视图配置器  -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>

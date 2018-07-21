@@ -1,0 +1,45 @@
+/*@charset "utf-8";
+/* CSS Document */
+body,ul,li,p,h1,h2,h3,h4,h5,h6,img,br,hr,table,tr,td,dl,dt,dd,form{margin:0;padding:0;}
+html,body,div,span,span,object,iframe,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,section, article, aside, header, footer, nav, dialog, figure,menu,hgroup,iframe{ font-family:"Microsoft YaHei"; margin:0; padding:0; border:0; }
+body{ background:#fff; font-family:"Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif; font-size:12px; line-height:24px; color:#333; }
+input,textarea,button{ resize:none; font-family:"Microsoft YaHei"; background: #fff; border: 0;  }
+input::-webkit-input-placeholder{color: #f6f6f6;}
+img{ border:none; vertical-align:middle; }
+ul,li{ list-style:none;}
+a{ text-decoration:none; color:#333; outline:none; }
+input:focus,textarea:focus{ outline:none; }
+span h1 h2 h3 h4 h5{ font-family:"Microsoft YaHei";}
+.fr{float:right;}
+
+.fl{float:left;}
+.or{ overflow:hidden;}
+/*个人公共样式结束*/
+i{background:url(../images/icon-1.png) no-repeat; display:inline-block; width:318px; height:104px; }
+.title_1{ text-align:center; letter-spacing:2px;}
+.title_1 .title_1-1{color:#a7a5a5; }
+.title_1 .title_1-2{font-size:30px; color:#000; margin-top:4px;}
+.title_1 .title_1-3{font-size:18px; color:#181818; margin-top:8px;}
+
+.title_3{width:415px; height:181px; text-align:center; margin:43px auto 0; }
+.title_3 .title_3-1{font-size:40px; color:#000; margin-top:11px;}
+.title_3 .square_1{width:95px; height:2px; background:#fff; margin:25px auto; border-bottom:1px solid #000; border-top:6px solid #000;}
+.title_3 .title_3-2{margin-top:12px; color:#666;}
+.title_3 .nav_5 li{float:left; width:128px; height:37px; border:1px solid #000; line-height:37px; margin-top:22px;}
+.title_3 .nav_5 .on_2{background:#dc471c; border:1px solid #dc471c; }
+.title_3 .nav_5 .nav_5-2{margin:22px 11px 0;}
+.title_3 .nav_5 li a{color:#1b1b1b; display:inline-block; width:128px; height:37px;}
+.title_3 .nav_5 .on_2 a{color:#fff;}
+.title_3 .nav_5 li:hover{color:#fff; background:#dc471c; border:1px solid #dc471c;}
+.title_3 .nav_5 li:hover a{color:#fff;}
+
+.focus{width:135px; height:18px; position:absolute; bottom:23px; left:50%;}
+.focus a{width:10px; height:10px; display:inline-block; background:rgba(204,204,204,0); border-radius:50px; border:3px solid #dc471c;}
+.focus .box_13-2,.box_13 .box_13-4{margin:0 3px 0 5px;}
+.focus .on_5{background:#dc471c; border:3px solid #dc471c;}
+.focus .box_13-5{margin-right:5px;}
+.focus a:hover{background:#dc471c; border:3px solid #dc471c;}
+
+.focus_1{width:135px; height:18px; position:absolute; bottom:23px; left:50%;}
+.focus_1 a{width:10px; height:10px; display:inline-block; background:rgba(204,204,204,0); border-radius:50px; border:3px solid #dc471c;}
+.focus_1 .on_6{background:#dc471c; border:3px solid #dc471c;}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	
+	<package name="mmb" extends="struts-default">
+		<action name="Connect" class="contactAction">
+			<result>/WEB-INF/views/connect.jsp</result>
+		</action>
+		<action name="Index">
+			<result name="success">/WEB-INF/views/index.jsp</result>
+		</action>			
+	</package>
+	
+	<package name="myjson" extends="json-default">
+		<action name="ProvinceAction" class="provinceAction">
+			<result type="json"/>
+		</action>
+		
+		<action name="CityAction" class="cityAction">
+			<result type="json"/>
+		</action>
+		
+		<action name="CountyAction" class="countyAction">
+			<result type="json"/>
+		</action>
+		
+		<action name="HomePageAction" class="homePageAction">
+			<result type="json"/>
+		</action>
+	</package>
+	
+</struts>

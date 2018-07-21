@@ -1,0 +1,8 @@
+package com.Rice.service;
+
+import com.Rice.entity.User;
+public interface IUserService {
+	public abstract User getLoginByUser(User user);
+	
+	Integer insterUserReturnUserId(User user);
+}

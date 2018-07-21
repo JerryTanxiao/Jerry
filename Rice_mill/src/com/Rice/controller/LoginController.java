@@ -1,0 +1,80 @@
+package com.Rice.controller;
+
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+@Controller
+public class LoginController {
+/*	@GetMapping("cp.do")
+	public String cp(){
+		return "cp";
+	}*/
+/*	@GetMapping("cpday.do")
+	public String cpday(){
+		return "cpday";
+	}*/
+/*	@GetMapping("cpfood.do")
+	public String cpfood(){
+		return "cpfood";
+	}*/
+	@GetMapping("cpnew.do")
+	public String cpnew(){
+		return "cpnew";
+	}
+/*	@GetMapping("cpnoodle.do")
+	public String cpnoodle(){
+		return "cpnoodle";
+	}*/
+	/*@GetMapping("cpsoup.do")
+	public String cpsoup(){
+		return "cpsoup";
+	}*/
+/*	@GetMapping("cptoday.do")
+	public String cptoday(){
+		return "cptoday";
+	}*/
+	@GetMapping("fw.do")
+	public String fw(){
+		return "fw";
+	}
+	@GetMapping("gy.do")
+	public String gy(){
+		return "gy";
+	}
+	@GetMapping("lx.do")
+	public String lx(){
+		return "lx";
+	}
+	@GetMapping("ys.do")
+	public String ys(){
+		return "ys";
+	}
+	@GetMapping("ys2.do")
+	public String ys2(){
+		return "ys2";
+	}
+	@GetMapping("ditu.do")
+	public String ditu(){
+		return "ditu";
+	}
+	@GetMapping("login.do")
+	public String login(){
+		return "login";
+	}
+	@GetMapping("register.do")
+	public String register(){
+		return "register";
+	}
+	@GetMapping("vip.do")
+	public String vip(){
+		return "vip";
+	}
+	@GetMapping("vip2.do")
+	public String vip2(){
+		return "vip2";
+	}
+	@GetMapping("vip3.do")
+	public String vip3(){
+		return "vip3";
+	}
+}

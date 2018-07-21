@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<package name="front" extends="json-default"></package>
+	<package name="mm" extends="struts-default">
+		<action name="About" class="ShopAction">
+			<result>/WEB-INF/views/about.jsp</result>
+		</action>
+		<action name="Advertise" class="JobAction">
+			<result>/WEB-INF/views/advertise.jsp</result>
+		</action>
+	</package>
+</struts>

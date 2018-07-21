@@ -1,0 +1,11 @@
+package com.Rice.mapper;
+import com.Rice.entity.User;
+public interface UserMapper {
+	public User selectLoginByUser(User user);
+	/**
+	 * 用户添加
+	 * @param user
+	 * @return
+	 */
+	Integer insertUsers(User user);
+}

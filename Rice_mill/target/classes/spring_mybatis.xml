@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	<!--Spring 扫包 -->
+	<context:component-scan base-package="com.Rice" />
+	<!--声明自动为spring容器中那些配置@aspectJ切面的bean创建代理，织入切面。 -->
+	<aop:aspectj-autoproxy />
+	<!--加载properties文件 -->
+	<bean id="properties"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<array>
+				<value>classpath:jdbc.properties</value>
+			</array>
+		</property>
+	</bean>
+	<!--连接池配置 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	<!--扫包Mapper mybatis -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.Rice.mapper" />
+	</bean>
+	<!--配置 sqlSessionTemplate -->
+	<bean id="sqlsessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	<!--配置sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!--对实体类进行注册 它一般对应我们的实体类所在的包， 这个时候会自动取对应包中不包括包名的简单类名作为包括包名的别名。 多个package之间可以用逗号或者分号等来进行分隔。 
+			(value的值一定要是包的全名) -->
+		<property name="typeAliasesPackage" value="com.Rice.entity" />
+		<!--分页插件 -->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value>
+							dialect=mysql
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+	</bean>
+	<!--事务配置 -->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<!-- <tx:method name="save*" propagation="REQUIRED"/> <tx:method name="delete*" 
+				propagation="REQUIRED"/> <tx:method name="update*" propagation="REQUIRED" 
+				/> -->
+			<tx:method name="*" propagation="REQUIRED" />
+			<!-- read-only="true"对dao层的优化，获取只读的Connection -->
+			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<!--事务的增强 -->
+	<aop:config>
+		<!-- com.bmw.service 包和子包下的public类型的任何参数类型的方法的执行 -->
+		<aop:pointcut id="pointcut"
+			expression="execution(public * com.Rice.service..*.*(..))" />
+		<!-- advisor: -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut" />
+	</aop:config>
+</beans>
